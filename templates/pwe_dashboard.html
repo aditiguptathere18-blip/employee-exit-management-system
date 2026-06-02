@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWE Dashboard</title>
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+    <h1>PWE Exit Reviews</h1>
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>ID</th>
+            <th>Employee Name</th>
+            <th>Department</th>
+            <th>View Employee</th>
+            <th>View Manager</th>
+            <th>Action</th>
+        </tr>
+
+        {% for manager in managers %}
+
+        <tr>
+
+            <td>{{ manager.id }}</td>
+
+            <td>{{ manager.employee_name }}</td>
+
+            <td>{{ manager.department }}</td>
+            <td>
+    <a href="/view-employee-form/{{ employee_ids[manager.employee_id] }}">
+        View Employee
+    </a>
+</td>
+
+<td>
+    <a href="/view-manager-form/{{ manager.id }}">
+        View Manager
+    </a>
+</td>
+
+            <td>
+
+    {% if employee_reviews.get(manager.employee_id) %}
+
+<button disabled class="reviewed-btn">
+    Already Reviewed
+</button>
+
+{% else %}
+
+<a href="/review-manager/{{ manager.id }}">
+    Review
+</a>
+
+{% endif %}
+
+</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br><br>
+
+<a href="{{ url_for('logout') }}"
+   class="logout-btn">
+    Logout
+</a>
+
+</body>
+</html>

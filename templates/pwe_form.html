@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>PWE Exit Form</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <div class="form-header">
+        
+        <img src="{{ url_for('static', filename='images/prorisk-logo.png') }}"
+class="company-logo">
+
+        <h1>PWE Exit Management Form</h1>
+
+        <p>
+            This form is intended to be filled by PWE/HR during employee separation process.
+        </p>
+
+    </div>
+
+    <div class="form-body">
+
+        <p class="required">* Required</p>
+        <form method="POST" action="/submit-pwe">
+        
+
+        <!-- SECTION 1 -->
+
+        <div class="section-card active-section" id="pweSection1">
+
+            <h2>Section 1: Employee Details</h2>
+
+            <label>1. Employee Name *</label>
+            <input type="text" name="employee_name" value="{{manager.employee_name}}" readonly>
+
+            <label>2. Employee ID *</label>
+            <input type="text" name="employee_id" value="{{manager.employee_id}}" readonly>
+
+            <label>3. Department *</label>
+
+                <select name="department" value="{{manager.department}}" readonly>
+                    <option value="">Select your answer</option>
+                    <option {% if manager.department == 'Top Management' %}selected{% endif %}>Top Management</option>
+                    <option {% if manager.department == 'Underwriting & Claims' %}selected{% endif %}>Underwriting & Claims</option>
+                    <option {% if manager.department == 'Technology' %}selected{% endif %}>Technology</option>
+                    <option {% if manager.department == 'People & Workplace Excellence' %}selected{% endif %}>People & Workplace Excellence</option>
+                </select>
+
+            <label>4. Date of joining *</label>
+            <input type="date" name="joining_date" value="{{manager.joining_date}}" readonly>
+
+            <label>5. Last working day *</label>
+            <input type="date" name="last_working_day" required>
+
+            <label>6. Reporting Manager *</label>
+            <input type="text" name="reporting_manager" placeholder="Enter answer" required>
+
+            <label>
+                7. Contact number
+                (Please enter 10-digit mobile number without country code) *
+            </label>
+
+            <input type="tel" name="contact_number" placeholder="Enter 10-digit mobile number" pattern="[6-9][0-9]{9}" maxlength="10" minlength="10" inputmode="numeric" required>
+            <label>8. Personal email id *</label>
+            <input type="email" name="personal_email" placeholder="Enter answer" required>
+
+            <label>9. Communication address *</label>
+            <textarea name="communication_address" placeholder="Enter answer" required></textarea>
+
+            <div class="button-container">
+
+                <button type="button"
+                onclick="goToPweSection2()">
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- SECTION 2 -->
+
+        <div class="section-card hidden-section" id="pweSection2">
+
+            <h2>Section 2: Exit Details</h2>
+
+            <label>10. Exit discussion conducted on *</label>
+            <input type="date" name="exit_discussion_date" required>
+
+            <label>11. Reason of separation *</label>
+
+            <select name="separation_reason" required>
+
+                <option value="">Select your answer</option>
+
+                <option>Resignation</option>
+                <option>Absconding</option>
+                <option>Termination</option>
+                <option>Retirement</option>
+                <option>Others</option>
+
+            </select>
+
+            <label>
+                12. Explain briefly if "others" is selected *
+            </label>
+
+            <textarea name="other_reason" placeholder="Enter answer"></textarea>
+
+            <label>13. Notice period served *</label>
+
+            <select name="notice_period_served" required>
+
+                <option value="">Select your answer</option>
+
+                <option>Fully served</option>
+                <option>Partially served</option>
+                <option>Buyout</option>
+                <option>Waived off</option>
+
+            </select>
+
+            <label>14. Recovery applicable? *</label>
+
+            <select name="recovery_applicable" required>
+
+                <option value="">Select your answer</option>
+
+                <option>Yes</option>
+                <option>No</option>
+
+            </select>
+
+            <label>15. Recovery type *</label>
+
+            <div class="checkbox-group">
+
+                <label><input type="checkbox" name="recovery_type" value="Notice Pay Recovery"> Notice Pay Recovery</label>
+
+                <label><input type="checkbox" name="recovery_type" value="Asset Recovery" > Asset Recovery</label>
+
+                <label><input type="checkbox" name="recovery_type" value="Advance Recovery"> Advance Recovery</label>
+
+                <label><input type="checkbox" name="recovery_type" value="Other"> Other</label>
+
+                <label><input type="checkbox" name="recovery_type" value="Not Applicable"> Not Applicable</label>
+
+            </div>
+
+            <label>16. Recovery Remarks *</label>
+
+            <textarea name="recovery_remarks" placeholder="Enter answer"></textarea>
+
+            <div class="button-container">
+
+                <button type="button"
+                class="secondary-btn"
+                onclick="backToPweSection1()">
+                    Back
+                </button>
+
+                <button type="button" onclick="goToPweSection3()">
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+        <!-- SECTION 3 -->
+
+<div class="section-card hidden-section" id="pweSection3">
+
+    <h2>Section 3: Asset Return & Access Closure</h2>
+
+    <label>17. Company assets returned *</label>
+
+    <div class="checkbox-group">
+
+        <label><input type="checkbox" name="assets_returned" value="Laptop/System"> Laptop/System</label>
+
+        <label><input type="checkbox" name="assets_returned" value="Charger"> Charger</label>
+
+        <label><input type="checkbox" name="assets_returned" value="ID/Access Card"> ID/Access Card</label>
+
+        <label><input type="checkbox" name="assets_returned" value="SIM Card"> SIM Card</label>
+
+        <label><input type="checkbox" name="assets_returned" value="Headset"> Headset</label>
+
+        <label><input type="checkbox" name="assets_returned" value="Documents"> Documents</label>
+
+        <label><input type="checkbox" name="assets_returned" value="Other"> Other</label>
+
+        <label><input type="checkbox" name="assets_returned" value="Not Applicable"> Not Applicable</label>
+
+    </div>
+
+    <label>18. Asset return status *</label>
+
+    <select name="asset_return_status" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Completed</option>
+
+        <option>Partially Completed</option>
+
+        <option>Pending</option>
+
+    </select>
+
+    <label>19. Access deactivation completed *</label>
+
+    <div class="checkbox-group">
+
+        <label><input type="checkbox" name="access_deactivation" value="Official Email" > Official Email</label>
+
+        <label><input type="checkbox" name="access_deactivation" value="Appsteer"> Appsteer</label>
+
+        <label><input type="checkbox" name="access_deactivation" value="Kredily"> Kredily</label>
+
+        <label><input type="checkbox" name="access_deactivation" value="Whatsapp Groups"> Whatsapp Groups</label>
+
+        <label><input type="checkbox" name="access_deactivation" value="Shared Drives"> Shared Drives</label>
+
+        <label><input type="checkbox" name="access_deactivation"value="VPN"> VPN</label>
+
+        <label><input type="checkbox" name="access_deactivation" value="Internal Portals"> Internal Portals</label>
+
+        <label><input type="checkbox" name="access_deactivation" value="Other"> Other</label>
+
+    </div>
+
+    <label>20. Access closure status *</label>
+
+    <select name="access_closure_status" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Completed</option>
+
+        <option>In Progress</option>
+
+        <option>Pending</option>
+
+    </select>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="backToPweSection2()">
+            Back
+        </button>
+
+        <button type="button" onclick="goToPweSection4()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+
+<!-- SECTION 4 -->
+
+<div class="section-card hidden-section" id="pweSection4">
+
+    <h2>Section 4: Financial Closure</h2>
+
+    <label>21. Pending dues / recoveries *</label>
+
+    <textarea name="pending_dues" placeholder="Enter your answer"></textarea>
+
+    <label>22. Full & Final settlement initiated? *</label>
+
+    <div class="option-group">
+
+        <label>
+            Yes
+            <input type="radio" name="fnf_initiated" value="Yes" required>
+        </label>
+
+        <label>
+            No
+            <input type="radio" name="fnf_initiated" value="No">
+        </label>
+
+        <label>
+            Under Process
+            <input type="radio" name="fnf_initiated" value="Under Process">
+        </label>
+
+    </div>
+
+    <label>23. F&F Status *</label>
+
+    <select name="fnf_status" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Pending</option>
+
+        <option>Documentation</option>
+
+        <option>Under Verification</option>
+
+        <option>Approved</option>
+
+        <option>Processed</option>
+
+        <option>Completed</option>
+
+    </select>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="backToPweSection3()">
+            Back
+        </button>
+
+        <button type="button" onclick="goToPweSection5()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+<!-- SECTION 5 -->
+
+<div class="section-card hidden-section" id="pweSection5">
+
+    <h2>Section 5: Exit Documentation</h2>
+
+    <label>24. Exit documents shared *</label>
+
+    <div class="checkbox-group">
+
+        <label><input type="checkbox" name="exit_documents" value="Relieving Letter"> Relieving Letter</label>
+
+        <label><input type="checkbox" name="exit_documents" value="Experience Letter"> Experience Letter</label>
+
+        <label><input type="checkbox" name="exit_documents" value="Full & Final Statement"> Full & Final Statement</label>
+
+        <label><input type="checkbox" name="exit_documents" value="Service Certificate"> Service Certificate</label>
+
+        <label><input type="checkbox" name="exit_documents" value="Tax Documents"> Tax Documents</label>
+
+        <label><input type="checkbox" name="exit_documents" value="Other"> Other</label>
+
+    </div>
+
+    <label>25. Documentation status *</label>
+
+    <select name="documentation_status" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Completed</option>
+
+        <option>Pending</option>
+
+        <option>Partial</option>
+
+    </select>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="backToPweSection4()">
+            Back
+        </button>
+
+        <button type="button"
+        onclick="goToPweSection6()">
+            Next
+        </button>
+
+    </div>
+
+    </div>
+    <!-- SECTION 6 -->
+
+<div class="section-card hidden-section" id="pweSection6">
+
+    <h2>Section 6: Rehire Eligibility</h2>
+
+    <label>26. Eligible for rehire *</label>
+
+    <select name="rehire_eligibility" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Yes</option>
+
+        <option>No</option>
+
+        <option>Case-to-case basis</option>
+
+    </select>
+
+    <label>27. Rehire Recommendation Reason *</label>
+
+    <div class="checkbox-group">
+
+        <label>
+            <input type="checkbox" name="rehire_reason" value="Good Performance History">
+            Good Performance History
+        </label>
+
+        <label>
+            <input type="checkbox" name="rehire_reason" value="Strong Technical Skills">
+            Strong Technical Skills
+        </label>
+
+        <label>
+            <input type="checkbox" name="rehire_reason" value="Positive Behaviour">
+            Positive Behaviour
+        </label>
+
+        <label>
+            <input type="checkbox" name="rehire_reason" value="Reliable Employee">
+            Reliable Employee
+        </label>
+
+        <label>
+            <input type="checkbox" name="rehire_reason" value="Performance Concerns">
+            Performance Concerns
+        </label>
+
+        <label>
+            <input type="checkbox" name="rehire_reason" value="Behavioural Concerns">
+            Behavioural Concerns
+        </label>
+
+        <label>
+            <input type="checkbox" name="rehire_reason" value="Attendance Issues">
+            Attendance Issues
+        </label>
+
+        <label>
+            <input type="checkbox" name="rehire_reason" value="Compliance Issues">
+            Compliance Issues
+        </label>
+
+        <label>
+            <input type="checkbox" name="rehire_reason" value="Organizational Fit Concerns">
+            Organizational Fit Concerns
+        </label>
+
+    </div>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="backToPweSection5()">
+            Back
+        </button>
+
+        <button type="button" onclick="goToPweSection7()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+<!-- SECTION 7 -->
+
+<div class="section-card hidden-section" id="pweSection7">
+
+    <h2>Section 7: Final HR Observation & Recommendation</h2>
+
+    <label>28. HR Observation *</label>
+
+    <p class="rating-title">
+        (Indicate Yes/No for the following)
+    </p>
+
+    <div class="closing-question">
+
+        <p>Genuine Resignation</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="genuine_resignation" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="genuine_resignation" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="closing-question">
+
+        <p>Emotional Decision</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="emotional_decision" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="emotional_decision" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="closing-question">
+
+        <p>Better Opportunity Driven</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="better_opportunity" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="better_opportunity" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="closing-question">
+
+        <p>Performance Concern Exists</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="performance_concern" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="performance_concern" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="closing-question">
+
+        <p>Managerial Conflict Exists</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="managerial_conflict" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="managerial_conflict" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="closing-question">
+
+        <p>Retention Possible</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="retention_possible" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="retention_possible" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="closing-question">
+
+        <p>Strong Performer</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="strong_performer" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="strong_performer" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="closing-question">
+
+        <p>Attendance Concerns</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="attendance_concern" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="attendance_concern" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="closing-question">
+
+        <p>Behavioral Concerns</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="behavioral_concern" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="behavioral_concern" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="closing-question">
+
+        <p>Communication Gap</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="communication_gap" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="communication_gap" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="closing-question">
+
+        <p>Policy Violation Observed</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="policy_violation"value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="policy_violation" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <label>29. HR Recommendation *</label>
+
+    <select name="hr_recommendation" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Resignation Accepted – Normal Separation</option>
+
+        <option>Retention Attempt</option>
+
+        <option>Counter Offer</option>
+
+        <option>Notice Period Negotiation</option>
+
+        <option>Conditional Retention (PIP)</option>
+
+        <option>Internal Transfer</option>
+
+        <option>Role Change</option>
+
+        <option>Immediate Release</option>
+
+        <option>Separation under Review</option>
+
+    </select>
+
+    <label>30. Final HR Remarks *</label>
+
+    <textarea name="final_hr_remarks" placeholder="Enter your answer"></textarea>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="backToPweSection6()">
+            Back
+        </button>
+
+        <button type="submit">
+            Submit
+        </button>
+
+    </div>
+
+</div>
+</form>
+
+</div>
+
+    </div>
+
+
+
+<script src="{{ url_for('static', filename='js/pwe.js') }}"></script>
+<script src="{{ url_for('static', filename='js/form-validation.js') }}"></script>
+
+</body>
+
+</html>

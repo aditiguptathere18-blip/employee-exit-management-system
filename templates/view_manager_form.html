@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Employee Details</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/dashboard.css') }}">
+
+</head>
+<body>
+
+<h1>Manager Exit Form Details</h1>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>Field</th>
+    <th>Value</th>
+</tr>
+
+<tr>
+    <td>Employee Name</td>
+    <td>{{ manager.employee_name }}</td>
+</tr>
+<tr>
+    <td>Employee ID</td>
+    <td>{{ manager.employee_id }}</td>
+</tr>
+
+<tr>
+    <td>Department</td>
+    <td>{{ manager.department }}</td>
+</tr>
+
+<tr>
+    <td>Joining Date</td>
+    <td>{{ manager.joining_date }}</td>
+</tr>
+
+<tr>
+    <td>Resignation Date</td>
+    <td>{{ manager.resignation_date}}</td>
+</tr>
+<tr>
+    <td>Primary Reason</td>
+    <td>{{ manager.primary_reason }}</td>
+</tr>
+<tr>
+    <td>Retention Attempt</td>
+    <td>{{ manager.retention_attempt}}</td>
+</tr>
+<tr>
+    <td>Retention Outcome</td>
+    <td>{{ manager.retention_outcome}}</td>
+</tr>
+<tr>
+    <td>Overall Performance</td>
+    <td>{{ manager.overall_performance}}</td>
+</tr>
+<tr>
+    <td>Technical Knowledge</td>
+    <td>{{ manager.technical_knowledge}}</td>
+</tr>
+<tr>
+    <td>Accuracy Work</td>
+    <td>{{ manager.accuracy_work}}</td>
+</tr>
+<tr>
+    <td>Productivity</td>
+    <td>{{ manager.productivity}}</td>
+</tr>
+<tr>
+    <td>Communication Skills</td>
+    <td>{{ manager.communication_skills}}</td>
+</tr>
+<tr>
+    <td>Team Collaboration</td>
+    <td>{{ manager.team_collaboration}}</td>
+</tr>
+<tr>
+    <td>Learning Ability</td>
+    <td>{{ manager.learning_ability}}</td>
+</tr>
+<tr>
+    <td>Ownership</td>
+    <td>{{ manager.ownership}}</td>
+</tr>
+<tr>
+    <td>Client Handling</td>
+    <td>{{ manager.client_handling}}</td>
+</tr>
+<tr>
+     <td>Adaptability</td>
+     <td>{{ manager.adaptability }}</td>
+</tr>
+<tr>
+    <td>Process Compliance</td>
+    <td>{{ manager.process_compliance}}</td>
+</tr>
+<tr>
+    <td>Strengths</td>
+    <td>{{ manager.strengths }}</td>
+</tr>
+<tr>
+    <td>Other Strength</td>
+    <td>{{ manager.other_strength}}</td>
+</tr>
+<tr>
+    <td>Improvements</td>
+    <td>{{ manager.improvements}}</td>
+</tr>
+<tr>
+    <td>Other Improvement</td>
+    <td>{{ manager.other_improvement }}</td>
+</tr>
+<tr>
+    <td>Behaviour</td>
+    <td>{{ manager.behaviour}}</td>
+</tr>
+<tr>
+    <td>Attendance</td>
+    <td>{{ manager.attendance}}</td>
+</tr>
+<tr>
+    <td>Insurance Knowledge</td>
+    <td>{{ manager.insurance_knowledge }}</td>
+</tr>
+<tr>
+    <td>Handover Status</td>
+    <td>{{ manager.handover_status}}</td>
+</tr>
+<tr>
+    <td>Knowledge Transfer</td>
+    <td>{{ manager.knowledge_transfer}}</td>
+</tr>
+<tr>
+    <td>Pending Task</td>
+    <td>{{ manager.pending_task}}</td>
+</tr>
+<tr>
+    <td>Replacement Urgency</td>
+    <td>{{ manager.replacement_urgency}}</td>
+</tr>
+<tr>
+    <td>Continue Organization</td>
+    <td>{{ manager.continue_org }}</td>
+</tr>
+<tr>
+    <td>Improve Performance</td>
+    <td>{{ manager.improve_performance}}</td>
+</tr>
+<tr>
+    <td>Self Improvement</td>
+    <td>{{ manager.self_improvement}}</td>
+</tr>
+<tr>
+    <td>Feedback Discussion</td>
+    <td>{{ manager.feedback_discussion}}</td>
+</tr>
+<tr>
+    <td>Retention Feasible</td>
+    <td>{{ manager.retention_feasible}}</td>
+</tr>
+<tr>
+    <td>Rehire</td>
+    <td>{{ manager.rehire}}</td>
+</tr>
+<tr>
+    <td>Future Roles</td>
+    <td>{{ manager.future_roles}}</td>
+</tr>
+<tr>
+    <td>Overall Remarks</td>
+    <td>{{ manager.overall_remarks}}</td>
+</tr>
+</table>
+
+<br><br>
+
+<a href="javascript:history.back()" class="back-btn">
+    Back
+</a>
+</body>
+</html>

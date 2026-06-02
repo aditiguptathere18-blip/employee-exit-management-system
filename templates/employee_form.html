@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Employee Resignation Form</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <!-- HEADER -->
+
+    <div class="form-header">
+
+        <img
+        src="{{ url_for('static', filename='images/prorisk-logo.png') }}"
+        class="company-logo">
+
+        <h1>Employee Resignation Form</h1>
+
+        <p>
+            This form is intended to be filled by employees who resign.
+            Submission does not automatically collect your details unless you provide them yourself.
+        </p>
+
+    </div>
+
+    <!-- FORM BODY -->
+
+    <div class="form-body">
+
+        <p class="required">* Required</p>
+
+        <form method="POST" action="/submit-employee">
+
+        <!-- SECTION 1 -->
+
+        <div class="section-card active-section" id="section1">
+
+            <h2>Section 1: Employee Detail</h2>
+
+            <label>1. Employee Name *</label>
+            <input
+            type="text"
+            name="employee_name"
+            placeholder="Enter your answer"
+            required>
+
+            <label>2. Employee ID *</label>
+            <input
+            type="text"
+            name="employee_id"
+            placeholder="Enter your answer"
+            required>
+
+            <label>3. Department *</label>
+
+            <select name="department" required>
+
+                <option value="">
+                    Select your answer
+                </option>
+
+                <option value="Top Management">
+                    Top Management
+                </option>
+
+                <option value="Underwriting & Claims">
+                    Underwriting & Claims
+                </option>
+
+                <option value="Technology">
+                    Technology
+                </option>
+
+                <option value="People & Workplace Excellence">
+                    People & Workplace Excellence
+                </option>
+
+            </select>
+
+            <label>4. Date of joining *</label>
+
+            <input
+            type="date"
+            name="joining_date"
+            required>
+
+           <label>5. Duration of Employment *</label>
+
+<div class="duration-box">
+
+    <input
+        type="number"
+        name="duration_years"
+        placeholder="Years"
+        min="0"
+        required>
+
+    <input
+        type="number"
+        name="duration_months"
+        placeholder="Months"
+        min="0"
+        max="11"
+        required>
+
+</div>
+
+            <label>6. Reporting Manager *</label>
+
+            <input
+            type="text"
+            name="reporting_manager"
+            placeholder="Enter your answer"
+            required>
+
+            <label>
+                7. Contact number
+                (Please enter 10-digit mobile number without country code) *
+            </label>
+
+            <input type="tel" name="contact_number" placeholder="Enter 10-digit mobile number" pattern="[6-9][0-9]{9}" maxlength="10" minlength="10" inputmode="numeric" required>
+            <label>8.1 Personal email id *</label>
+
+            <input type="email" name="personal_email" placeholder="Enter your Gmail address" pattern="[a-zA-Z0-9._%+-]+@gmail\.com" required>
+
+            <label>8.2 Communication Address *</label>
+
+            <textarea
+            name="communication_address"
+            placeholder="Enter your answer" 
+            required></textarea>
+
+            <div class="button-container">
+
+                <button
+                type="button"
+                onclick="nextSection()">
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- SECTION 2 -->
+
+        <div class="section-card hidden-section" id="section2">
+
+            <h2>Section 2: Separation Details</h2>
+
+            <label>9. Reason for leaving *</label>
+
+            <select name="reason" required>
+
+                <option value="">
+                    Select your answer
+                </option>
+
+                <option value="Better Salary">
+                    Better Salary
+                </option>
+
+                <option value="Career Growth">
+                    Career Growth
+                </option>
+
+                <option value="Higher Studies">
+                    Higher Studies
+                </option>
+
+                <option value="Relocation">
+                    Relocation
+                </option>
+
+                <option value="Family reasons">
+                    Family reasons
+                </option>
+
+                <option value="Health issues">
+                    Health issues
+                </option>
+
+                <option value="Work pressure">
+                    Work pressure
+                </option>
+
+                <option value="Managerial issues">
+                    Managerial issues
+                </option>
+
+                <option value="Team conflict">
+                    Team conflict
+                </option>
+
+                <option value="Work-life balance">
+                    Work-life balance
+                </option>
+
+                <option value="Job role mismatch">
+                    Job role mismatch
+                </option>
+
+                <option value="Performance pressure">
+                    Performance pressure
+                </option>
+
+                <option value="Lack of recognition">
+                    Lack of recognition
+                </option>
+
+                <option value="Better opportunity">
+                    Better opportunity
+                </option>
+
+                <option value="Organizational culture">
+                    Organizational culture
+                </option>
+
+                <option value="Shift timing">
+                    Shift timing
+                </option>
+
+                <option value="Others">
+                    Others
+                </option>
+
+            </select>
+
+            <label>
+                10. Explain briefly if "others" is selected *
+            </label>
+
+            <textarea
+            name="other_reason"
+            placeholder="Enter your answer"></textarea>
+
+            <label>11. Resignation submitted by *</label>
+
+            <select name="resignation_submitted_by" required>
+
+                <option value="">
+                    Select your answer
+                </option>
+
+                <option value="Employee">
+                    Employee
+                </option>
+
+                <option value="Management">
+                    Management
+                </option>
+
+                <option value="Mutual Discussion">
+                    Mutual Discussion
+                </option>
+
+                <option value="People & Workplace Excellence">
+                    People & Workplace Excellence
+                </option>
+
+            </select>
+
+            <label>12. Notice period served *</label>
+
+            <select name="notice_period" required>
+
+                <option value="">
+                    Select your answer
+                </option>
+
+                <option value="Fully served">
+                    Fully served
+                </option>
+
+                <option value="Partially served">
+                    Partially served
+                </option>
+
+                <option value="Buyout">
+                    Buyout
+                </option>
+
+                <option value="Waived off">
+                    Waived off
+                </option>
+
+            </select>
+
+            <div class="button-container">
+
+                <button
+                type="button"
+                class="secondary-btn"
+                onclick="previousSection()">
+                    Back
+                </button>
+
+                <button
+                type="button"
+                onclick="goToSection3()">
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- SECTION 3 -->
+
+        <div class="section-card hidden-section" id="section3">
+
+            <h2>Section 3: Job Experience Feedback</h2>
+
+            <p class="rating-title">
+
+                13. Please rate the following aspects of your employment
+                experience on a scale of 1 to 5
+                (1 = very poor, 5 = excellent)
+
+            </p>
+
+            <table class="rating-table">
+
+                <tr>
+
+                    <th>Job Experience Factors</th>
+
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+
+                </tr>
+
+                <tr>
+
+                    <td>Work environment</td>
+
+                    <td><input type="radio" name="work_environment" value="1" required></td>
+                    <td><input type="radio" name="work_environment" value="2"></td>
+                    <td><input type="radio" name="work_environment" value="3"></td>
+                    <td><input type="radio" name="work_environment" value="4"></td>
+                    <td><input type="radio" name="work_environment" value="5"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Team cooperation</td>
+
+                    <td><input type="radio" name="team_cooperation" value="1" required></td>
+                    <td><input type="radio" name="team_cooperation" value="2"></td>
+                    <td><input type="radio" name="team_cooperation" value="3"></td>
+                    <td><input type="radio" name="team_cooperation" value="4"></td>
+                    <td><input type="radio" name="team_cooperation" value="5"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Learning opportunity</td>
+
+                    <td><input type="radio" name="learning" value="1" required></td>
+                    <td><input type="radio" name="learning" value="2"></td>
+                    <td><input type="radio" name="learning" value="3"></td>
+                    <td><input type="radio" name="learning" value="4"></td>
+                    <td><input type="radio" name="learning" value="5"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Career growth</td>
+
+                    <td><input type="radio" name="career" value="1" required></td>
+                    <td><input type="radio" name="career" value="2"></td>
+                    <td><input type="radio" name="career" value="3"></td>
+                    <td><input type="radio" name="career" value="4"></td>
+                    <td><input type="radio" name="career" value="5"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Reporting manager support</td>
+
+                    <td><input type="radio" name="manager_support" value="1" required></td>
+                    <td><input type="radio" name="manager_support" value="2"></td>
+                    <td><input type="radio" name="manager_support" value="3"></td>
+                    <td><input type="radio" name="manager_support" value="4"></td>
+                    <td><input type="radio" name="manager_support" value="5"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Communication transparency</td>
+
+                    <td><input type="radio" name="communication" value="1" required></td>
+                    <td><input type="radio" name="communication" value="2"></td>
+                    <td><input type="radio" name="communication" value="3"></td>
+                    <td><input type="radio" name="communication" value="4"></td>
+                    <td><input type="radio" name="communication" value="5"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Recognition & Appreciation</td>
+
+                    <td><input type="radio" name="recognition" value="1" required></td>
+                    <td><input type="radio" name="recognition" value="2"></td>
+                    <td><input type="radio" name="recognition" value="3"></td>
+                    <td><input type="radio" name="recognition" value="4"></td>
+                    <td><input type="radio" name="recognition" value="5"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Compensation satisfaction</td>
+
+                    <td><input type="radio" name="compensation" value="1" required></td>
+                    <td><input type="radio" name="compensation" value="2"></td>
+                    <td><input type="radio" name="compensation" value="3"></td>
+                    <td><input type="radio" name="compensation" value="4"></td>
+                    <td><input type="radio" name="compensation" value="5"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Work-life balance</td>
+
+                    <td><input type="radio" name="work_life" value="1" required></td>
+                    <td><input type="radio" name="work_life" value="2"></td>
+                    <td><input type="radio" name="work_life" value="3"></td>
+                    <td><input type="radio" name="work_life" value="4"></td>
+                    <td><input type="radio" name="work_life" value="5"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Overall experience</td>
+
+                    <td><input type="radio" name="overall" value="1" required></td>
+                    <td><input type="radio" name="overall" value="2"></td>
+                    <td><input type="radio" name="overall" value="3"></td>
+                    <td><input type="radio" name="overall" value="4"></td>
+                    <td><input type="radio" name="overall" value="5"></td>
+
+                </tr>
+
+            </table>
+
+            <label>14. Positives experienced during your tenure</label>
+
+<div class="checkbox-group">
+
+    <label><input type="checkbox" name="positives" value="Supportive Team"> Supportive Team</label>
+
+    <label><input type="checkbox" name="positives" value="Good Learning"> Good Learning</label>
+
+    <label><input type="checkbox" name="positives" value="Friendly Environment"> Friendly Environment</label>
+
+    <label><input type="checkbox" name="positives" value="Flexible Working"> Flexible Working</label>
+
+    <label><input type="checkbox" name="positives" value="Good Leadership"> Good Leadership</label>
+
+    <label><input type="checkbox" name="positives" value="Career Exposure"> Career Exposure</label>
+
+    <label><input type="checkbox" name="positives" value="Recognition"> Recognition</label>
+
+</div>
+
+<label>15. Areas of concern</label>
+
+<div class="checkbox-group">
+
+    <label><input type="checkbox" name="concerns" value="High Workload"> High Workload</label>
+
+    <label><input type="checkbox" name="concerns" value="Poor Management"> Poor Management</label>
+
+    <label><input type="checkbox" name="concerns" value="Role Confusion"> Role Confusion</label>
+
+    <label><input type="checkbox" name="concerns" value="Communication Gap"> Communication Gap</label>
+
+    <label><input type="checkbox" name="concerns" value="Office Politics"> Office Politics</label>
+
+    <label><input type="checkbox" name="concerns" value="Lack of Recognition"> Lack of Recognition</label>
+
+</div>
+
+<label>16. Errors/challenges noted</label>
+
+<textarea
+name="challenges"
+placeholder="Enter your answer">
+</textarea>
+
+<div class="button-container">
+
+    <button
+    type="button"
+    class="secondary-btn"
+    onclick="backToSection2()">
+        Back
+    </button>
+
+    <button
+    type="button"
+    onclick="goToSection4()">
+        Next
+    </button>
+
+</div>
+
+</div>
+
+<!-- SECTION 4 -->
+
+<div class="section-card hidden-section" id="section4">
+
+    <h2>Section 4: Feedback for Management & Leadership</h2>
+
+    <label>17. Immediate manager rating on a scale of 1 to 5</label>
+
+    <div class="rating-group">
+
+        <label><input type="radio" name="manager_rating" value="1" required> 1</label>
+        <label><input type="radio" name="manager_rating" value="2"> 2</label>
+        <label><input type="radio" name="manager_rating" value="3"> 3</label>
+        <label><input type="radio" name="manager_rating" value="4"> 4</label>
+        <label><input type="radio" name="manager_rating" value="5"> 5</label>
+
+    </div>
+
+    <label>18. Leadership support rating on a scale of 1 to 5</label>
+
+    <div class="rating-group">
+
+        <label><input type="radio" name="leadership_rating" value="1" required> 1</label>
+        <label><input type="radio" name="leadership_rating" value="2"> 2</label>
+        <label><input type="radio" name="leadership_rating" value="3"> 3</label>
+        <label><input type="radio" name="leadership_rating" value="4"> 4</label>
+        <label><input type="radio" name="leadership_rating" value="5"> 5</label>
+
+    </div>
+
+    <label>19. Was feedback taken seriously?</label>
+
+    <div class="option-group">
+
+        <label><input type="radio" name="feedback_taken" value="Always" required> Always</label>
+
+        <label><input type="radio" name="feedback_taken" value="Sometimes"> Sometimes</label>
+
+        <label><input type="radio" name="feedback_taken" value="Rarely"> Rarely</label>
+
+        <label><input type="radio" name="feedback_taken" value="Never"> Never</label>
+
+    </div>
+
+    <label>20. Was performance evaluation fair?</label>
+
+    <div class="option-group">
+
+        <label><input type="radio" name="evaluation_fair" value="Yes" required> Yes</label>
+
+        <label><input type="radio" name="evaluation_fair" value="No"> No</label>
+
+        <label><input type="radio" name="evaluation_fair" value="Maybe"> Maybe</label>
+
+    </div>
+
+    <label>21. Managerial concerns:</label>
+
+    <div class="checkbox-group">
+
+        <label><input type="checkbox" name="managerial_concerns" value="Lack of Communication"> Lack of Communication</label>
+
+        <label><input type="checkbox" name="managerial_concerns" value="Favoritism"> Favoritism</label>
+
+        <label><input type="checkbox" name="managerial_concerns" value="Micromanagement"> Micromanagement</label>
+
+        <label><input type="checkbox" name="managerial_concerns" value="Lack of Support/Guidance"> Lack of Support/Guidance</label>
+
+        <label><input type="checkbox" name="managerial_concerns" value="Delayed Decision Making"> Delayed Decision Making</label>
+
+        <label><input type="checkbox" name="managerial_concerns" value="Unrealistic Expectations"> Unrealistic Expectations</label>
+
+        <label><input type="checkbox" name="managerial_concerns" value="Inadequate Guidance"> Inadequate Guidance</label>
+
+        <label><input type="checkbox" name="managerial_concerns" value="No concerns"> No concerns</label>
+
+    </div>
+
+    <div class="button-container">
+
+        <button
+        type="button"
+        class="secondary-btn"
+        onclick="backToSection3()">
+            Back
+        </button>
+
+        <button
+        type="button"
+        onclick="goToSection5()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+<!-- SECTION 5 -->
+
+<div class="section-card hidden-section" id="section5">
+
+    <h2>Section 5: Suggestions for Improvement & Closing</h2>
+
+    <label>22. Areas for Improvement</label>
+
+    <div class="checkbox-group">
+
+        <label><input type="checkbox" name="improvements" value="Salary Revision"> Salary Revision</label>
+
+        <label><input type="checkbox" name="improvements" value="Better Training"> Better Training</label>
+
+        <label><input type="checkbox" name="improvements" value="Better Communication"> Better Communication</label>
+
+        <label><input type="checkbox" name="improvements" value="Team Engagement"> Team Engagement</label>
+
+        <label><input type="checkbox" name="improvements" value="Managerial Improvement"> Managerial Improvement</label>
+
+        <label><input type="checkbox" name="improvements" value="Career Path Planning"> Career Path Planning</label>
+
+        <label><input type="checkbox" name="improvements" value="Process Improvement"> Process Improvement</label>
+
+        <label><input type="checkbox" name="improvements" value="Work-life Balance"> Work-life Balance</label>
+
+        <label><input type="checkbox" name="improvements" value="Recognition Programs"> Recognition Programs</label>
+
+        <label><input type="checkbox" name="improvements" value="Workload Distribution"> Workload Distribution</label>
+
+        <label><input type="checkbox" name="improvements" value="Employee Wellness"> Employee Wellness</label>
+
+        <label><input type="checkbox" name="improvements" value="Flexible Working"> Flexible Working</label>
+
+        <label><input type="checkbox" name="improvements" value="Other"> Other</label>
+
+    </div>
+
+    <label>23. Any additional suggestion area</label>
+
+    <textarea
+    name="additional_suggestions"
+    placeholder="Enter your answer"></textarea>
+
+    <h3>24. Closing comments</h3>
+
+    <!-- Question 1 -->
+
+    <div class="closing-question">
+
+        <p>Would you consider rejoining the organization in future? *</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio"
+                name="rejoin_organization"
+                value="Yes"
+                required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio"
+                name="rejoin_organization"
+                value="No">
+                No
+            </label>
+
+            <label>
+                <input type="radio"
+                name="rejoin_organization"
+                value="Maybe">
+                Maybe
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Question 2 -->
+
+    <div class="closing-question">
+
+        <p>Would you recommend this organization to others? *</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio"
+                name="recommend_organization"
+                value="Yes"
+                required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio"
+                name="recommend_organization"
+                value="No">
+                No
+            </label>
+
+            <label>
+                <input type="radio"
+                name="recommend_organization"
+                value="Maybe">
+                Maybe
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Question 3 -->
+
+    <div class="closing-question">
+
+        <p>Was your resignation process handled professionally? *</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio"
+                name="resignation_process"
+                value="Yes"
+                required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio"
+                name="resignation_process"
+                value="No">
+                No
+            </label>
+
+            <label>
+                <input type="radio"
+                name="resignation_process"
+                value="Maybe">
+                Maybe
+            </label>
+
+        </div>
+
+    </div>
+
+    <label>25. Final comments or message for the organization *</label>
+
+    <textarea
+    name="final_comments"
+    placeholder="Enter your answer"
+    required></textarea>
+
+    <div class="button-container">
+
+        <button
+        type="button"
+        class="secondary-btn"
+        onclick="backToSection4()">
+            Back
+        </button>
+
+        <button type="submit">
+            Submit
+        </button>
+
+    </div>
+
+</div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script
+src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+<script src="{{ url_for('static', filename='js/form-validation.js') }}"></script>
+
+</body>
+
+</html>

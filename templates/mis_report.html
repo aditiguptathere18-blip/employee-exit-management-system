@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MIS Report</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+<h1>Employee Exit MIS Report</h1>
+<div class="mis-summary">
+
+    <div class="summary-card">
+        <h3>Total Exits</h3>
+        <p>{{ total_exits }}</p>
+    </div>
+
+    <div class="summary-card">
+        <h3>Completed</h3>
+        <p>{{ completed }}</p>
+    </div>
+
+    <div class="summary-card">
+        <h3>Pending</h3>
+        <p>{{ pending }}</p>
+    </div>
+
+</div>
+
+<br>
+
+<form method="GET">
+
+    <label>From Date:</label>
+
+    <input
+        type="date"
+        name="from_date"
+        value="{{ from_date or '' }}">
+
+    <label>To Date:</label>
+
+    <input
+        type="date"
+        name="to_date"
+        value="{{ to_date or '' }}">
+
+    <button type="submit">
+        Search
+    </button>
+
+    <a href="{{ url_for('mis_report') }}">
+        <button type="button">
+            Reset
+        </button>
+    </a>
+
+</form>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>Employee Name</th>
+    <th>Employee ID</th>
+    <th>Department</th>
+    <th>Reporting Manager</th>
+    <th>Joining Date</th>
+    <th>Last Working Date</th>
+    <th>Duration</th>
+    <th>Exit Reason</th>
+    <th>Current Stage</th>
+</tr>
+
+{% for row in mis_data %}
+
+<tr>
+
+<td>{{ row.employee.employee_name }}</td>
+
+<td>{{ row.employee.employee_id }}</td>
+
+<td>{{ row.employee.department }}</td>
+
+<td>{{ row.employee.reporting_manager }}</td>
+
+<td>{{ row.employee.joining_date }}</td>
+
+<td>{{ row.last_working_day }}</td>
+
+<td>{{ row.employee.duration }}</td>
+
+<td>{{ row.employee.reason }}</td>
+
+    <td>
+
+{% if row.employee.top_reviewed %}
+    Completed
+
+{% elif row.employee.pwe_reviewed %}
+    PWE Reviewed
+
+{% elif row.employee.manager_reviewed %}
+    Manager Reviewed
+
+{% else %}
+    Employee Submitted
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br><br>
+
+<a href="{{ url_for('top_management_dashboard') }}"
+   class="back-btn">
+    Back to Dashboard
+</a>
+
+</body>
+
+</html>

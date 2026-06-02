@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Employee Details</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/dashboard.css') }}">
+
+</head>
+<body>
+
+<h1>Pwe Exit Form Details</h1>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>Field</th>
+    <th>Value</th>
+</tr>
+
+<tr>
+    <td>Employee Name</td>
+    <td>{{ pwe.employee_name }}</td>
+</tr>
+<tr>
+    <td>Employee ID</td>
+    <td>{{ pwe.employee_id }}</td>
+</tr>
+<tr>
+    <td>Department</td>
+    <td>{{pwe.department }}</td>
+</tr>
+
+<tr>
+    <td>Joining Date</td>
+    <td>{{ pwe.joining_date }}</td>
+</tr>
+<tr>
+    <td>Last Working Date</td>
+    <td>{{ pwe.last_working_day}}</td>
+</tr>
+<tr>
+    <td>Reporting Manager</td>
+    <td>{{ pwe.reporting_manager }}</td>
+</tr>
+<tr>
+    <td>Contact Number</td>
+    <td>{{pwe.contact_number}}</td> 
+</tr>
+
+<tr>
+    <td>Personal Email</td>
+    <td>{{pwe.personal_email}}</td>
+</tr>
+
+<tr>
+    <td>Communication Address</td>
+    <td>{{ pwe.communication_address }}</td>
+</tr>
+<tr>
+    <td>Exit Discussion Date</td>
+    <td>{{pwe.exit_discussion_date}}</td>
+</tr>
+<tr>
+    <td>Separation Reason</td>
+    <td>{{pwe.separation_reason}}</td>
+</tr>
+<tr>
+    <td>Other Reason</td>
+    <td>{{pwe.other_reason}}</td>
+</tr>
+<tr>
+    <td>Notice Period Served</td>
+    <td>{{pwe.notice_period_served}}</td>
+</tr>
+<tr>
+    <td>Recovery Applicable</td>
+    <td>{{pwe.recovery_applicable}}</td>
+</tr>
+<tr>
+    <td>Assets Returned</td>
+    <td>{{ pwe.assets_returned}}</td>
+</tr>
+<tr>
+    <td>Asset Returned Status</td>
+    <td>{{ pwe.asset_return_status }}</td>
+</tr>
+<tr>
+    <td>Access Deactivation</td>
+    <td>{{pwe.access_deactivation}}</td>
+</tr>
+<tr>
+    <td>Access Closure Status</td>
+    <td>{{pwe.access_closure_status}}</td>
+</tr>
+<tr>
+    <td>Pending Dues</td>
+    <td>{{pwe.pending_dues}}</td>
+</tr>
+<tr>
+    <td> F&F Initiated</td>
+    <td>{{pwe.fnf_initiated}}</td>
+</tr>
+<tr>
+    <td> F&F Status</td>
+    <td>{{pwe.fnf_status}}</td>
+</tr>
+<tr>
+    <td>Exit Documents</td>
+    <td>{{pwe.exit_documents}} </td>
+</tr>
+<tr>
+    <td>Documentation Status</td>
+    <td>{{pwe.documentation_status}}</td>
+</tr>
+<tr>
+    <td>Rehire Eligibility</td>
+    <td>{{pwe.rehire_eligibility}}</td>
+</tr>
+<tr>
+    <td>Rehire Reason</td>
+    <td>{{pwe.rehire_reason}}</td>
+</tr>
+<tr>
+    <td>Genuine Resignation</td>
+    <td>{{pwe.genuine_resignation}}</td>
+</tr>
+<tr>
+    <td>Emotional Decision</td>
+    <td>{{pwe.emotional_decision}}</td>
+</tr>
+<tr>
+    <td>Better Opportunity</td>
+    <td>{{pwe.better_opportunity}}</td>
+</tr>
+<tr>
+    <td>Performance Concerns</td>
+    <td>{{ pwe.performance_concern }}</td>
+</tr>
+<tr>
+    <td> Managerial Conflict</td>
+    <td>{{ pwe.managerial_conflict }}</td>
+</tr>
+<tr>
+    <td>Retention Possible</td>
+    <td>{{pwe.retention_possible}}</td>
+</tr>
+<tr>
+    <td>Strong_Performer</td>
+    <td>{{pwe.strong_performer}}</td>
+</tr>
+<tr>
+    <td>Attendance Concern</td>
+    <td>{{pwe.attendance_concern}}</td>
+</tr>
+<tr>
+    <td>Communication Gap</td>
+    <td>{{pwe.communication_gap}}</td>
+</tr>
+<tr>
+    <td>Policy Violation</td>
+    <td>{{pwe.policy_violation}}</td>
+</tr>
+<tr>
+    <td>Behavioral Concern</td>
+    <td>{{pwe.behavioral_concern}}</td>
+</tr>
+<tr>
+    <td>HR Recommendation</td>
+    <td>{{pwe.hr_recommendation}}</td>
+</tr>
+<tr>
+    <td>Final HR Remarks</td>
+    <td>{{pwe.final_hr_remarks}}</td>
+</tr>
+</table>
+
+<br><br>
+
+<a href="javascript:history.back()" class="back-btn">
+    Back
+</a>
+
+</body>
+</html>

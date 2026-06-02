@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Final Review</title>
+   
+      <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/top_review.css') }}">
+</head>
+
+<body>
+
+<h1>Top Management Final Review</h1>
+
+<form action="/submit-final-review" method="POST">
+
+    <label>Employee Name</label><br>
+
+    <input type="text"
+           name="employee_name"
+           value="{{ pwe.employee_name }}"
+           readonly>
+
+    <br><br>
+
+    <label>Employee ID</label><br>
+
+    <input type="text"
+           name="employee_id"
+           value="{{ pwe.employee_id }}"
+           readonly>
+
+    <br><br>
+
+    <label>Department</label><br>
+
+    <input type="text"
+           name="department"
+           value="{{ pwe.department }}"
+           readonly>
+
+    <br><br>
+
+    <label>Manager Recommendation</label><br>
+
+    <input type="text"
+           name="manager_recommendation"
+           value="{{ pwe.rehire_eligibility }}"
+           readonly>
+
+    <br><br>
+
+    <label>HR Recommendation</label><br>
+
+    <input type="text"
+           name="hr_recommendation"
+           value="{{ pwe.hr_recommendation }}"
+           readonly>
+
+    <br><br>
+
+    <label>Final Status</label><br>
+
+    <select name="final_status" required>
+
+        <option value="">Select</option>
+
+        <option value="Approved">
+            Approved
+        </option>
+
+        <option value="Rejected">
+            Rejected
+        </option>
+
+        <option value="On Hold">
+            On Hold
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <label>Top Management Remarks</label><br>
+
+    <textarea name="top_management_remarks"
+          rows="5"
+          placeholder="Enter remarks here..."></textarea>
+ 
+
+    <button type="submit">
+        Submit Final Review
+    </button>
+
+</form>
+
+<br><br>
+
+<a href="{{ url_for('logout') }}"
+   class="logout-btn">
+    Logout
+</a>
+
+</body>
+</html>

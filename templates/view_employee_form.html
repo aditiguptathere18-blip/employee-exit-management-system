@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Employee Details</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+<h1>Employee Exit Form Details</h1>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>Field</th>
+    <th>Value</th>
+</tr>
+
+<tr>
+    <td>Employee Name</td>
+    <td>{{ employee.employee_name }}</td>
+</tr>
+
+<tr>
+    <td>Employee ID</td>
+    <td>{{ employee.employee_id }}</td>
+</tr>
+
+<tr>
+    <td>Department</td>
+    <td>{{ employee.department }}</td>
+</tr>
+
+<tr>
+    <td>Joining Date</td>
+    <td>{{ employee.joining_date }}</td>
+</tr>
+
+<tr>
+    <td>Duration</td>
+    <td>{{employee.duration}}</td>
+</tr>
+
+<tr>
+    <td>Reporting Manager</td>
+    <td>{{ employee.reporting_manager }}</td>
+</tr>
+<tr>
+    <td>Contact Number</td>
+    <td>{{employee.contact_number}}</td>
+</tr>
+
+<tr>
+    <td>Personal Email</td>
+    <td>{{employee.personal_email}}</td>
+</tr>
+
+<tr>
+    <td>Communication Address</td>
+    <td>{{ employee.communication_address }}</td>
+</tr>
+
+<tr>
+    <td>Reason</td>
+    <td>{{ employee.reason }}</td>
+</tr>
+
+<tr>
+    <td>Resignation Submitted BY</td>
+    <td>{{employee.resignation_submitted_by}}</td>
+</tr>
+
+<tr>
+    <td>Notice Period</td>
+    <td>{{employee.notice_period}} </td>
+</tr>
+
+<tr>
+    <td>Work Environment</td>
+    <td>{{employee.work_environment}}</td>
+</tr>
+
+<tr>
+    <td>Team Cooperation </td>
+    <td>{{employee.team_cooperation}}</td>
+</tr>
+
+<tr>
+    <td>Learning</td>
+    <td>{{employee.learning}}</td>
+</tr>
+
+<tr>
+    <td>Career</td>
+    <td>{{employee.career}}</td>
+</tr>
+<tr>
+    <td>Manager Support</td>
+    <td>{{employee.manager_support}}</td>
+</tr>
+
+<tr>
+    <td>Communication</td>
+    <td>{{employee.communication}}</td>
+</tr>
+
+<tr>
+    <td>Recognition</td>
+    <td>{{employee.recognition}}</td>
+</tr>
+
+<tr>
+    <td>Compensation</td>
+    <td>{{employee.compensation}}</td>
+</tr>
+
+<tr>
+    <td>Work Life</td>
+    <td>{{employee.work_life}}</td>
+</tr>
+
+<tr>
+    <td>Overall</td>
+    <td>{{employee.overall}}</td>
+</tr>
+<tr>
+    <td>Positives</td>
+    <td>{{ employee.positives }}</td>
+</tr>
+
+<tr>
+    <td>Concerns</td>
+    <td>{{ employee.concerns }}</td>
+</tr>
+
+<tr>
+    <td>Challenges</td>
+    <td>{{ employee.challenges }}</td>
+</tr>
+<tr>
+    <td>Manager Rating</td>
+    <td>{{employee.manager_rating}}</td>
+</tr>
+<tr>
+    <td>Leadership Rating</td>
+    <td>{{employee.leadership_rating}}</td>
+</tr>
+<tr>
+    <td>Feedback Taken</td>
+    <td>{{employee.feedback_taken}}</td>
+</tr>
+<tr>
+    <td>Evaluation Fair</td>
+    <td>{{employee.evaluation_fair}}</td>
+</tr>
+<tr>
+    <td>Managerial Concerns</td>
+    <td>{{employee.managerial_concerns}}</td>
+</tr>
+<tr>
+    <td>Improvements</td>
+    <td>{{employee.improvements}}</td>
+</tr>
+<tr>
+    <td>Additional Suggestions</td>
+    <td>{{employee.additional_suggestions}}</td>
+</tr>
+<tr>
+    <td>Rejoin Organization</td>
+    <td>{{employee.rejoin_organization}}</td>
+</tr>
+<tr>
+    <td>Recommend Orgranization</td>
+    <td>{{employee.recommend_organization}}</td>
+</tr>
+<tr>
+    <td>Resignation Process</td>
+    <td>{{employee.resignation_process}}</td>
+</tr>
+<tr>
+    <td>Final Comments</td>
+    <td>{{ employee.final_comments }}</td>
+</tr>
+
+</table>
+
+<br><br>
+
+<a href="javascript:history.back()" class="back-btn">
+    Back
+</a>
+
+</body>
+</html>

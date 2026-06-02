@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Top Management Dashboard</title>
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+<h1>Final Exit Reviews</h1>
+
+<a href="{{ url_for('mis_report') }}">
+    <button>View MIS Report</button>
+</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>ID</th>
+        <th>Employee Name</th>
+        <th>Department</th> 
+        <th>View Employee</th>
+        <th>View Manager</th>
+        <th>View Pwe</th>
+        <th>Action</th>
+    </tr>
+
+    {% for pwe in pwe_forms %}
+
+<tr>
+
+    <td>{{ pwe.id }}</td>
+
+    <td>{{ pwe.employee_name }}</td>
+
+    <td>{{ pwe.department }}</td>
+
+    <td>
+        <a href="/view-employee-form/{{ employee_ids[pwe.employee_id] }}">
+    View Employee
+</a>
+    </td>
+
+    <td>
+        <a href="/view-manager-form/{{ manager_ids[pwe.employee_id] }}">
+    View Manager    
+</a>
+    </td>
+
+    <td>
+        <a href="/view-pwe-form/{{ pwe.id }}">
+            View PWE
+        </a>
+    </td>
+
+    <td>
+
+        {% if employee_reviews.get(pwe.employee_id) %}
+
+<button disabled class="reviewed-btn">
+    Already Reviewed
+</button>
+
+{% else %}
+
+<a href="/final-review/{{ pwe.id }}">
+    Final Review
+</a>
+
+{% endif %}
+    </td>
+
+</tr>
+
+{% endfor %}
+        </td>
+
+
+</table>
+
+<br><br>
+
+<a href="{{ url_for('logout') }}"
+   class="logout-btn">
+    Logout
+</a>
+
+</body>
+</html>

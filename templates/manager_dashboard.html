@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+    <h1>Employee Exit Submissions</h1>
+
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>ID</th>
+            <th>Employee Name</th>
+            <th>Department</th>
+            <th>View Employee Form</th>
+            <th>Action</th>
+        </tr>
+
+        {% for employee in employees %}
+
+        <tr>
+
+            <td>{{ employee.id }}</td>
+
+            <td>{{ employee.employee_name }}</td>
+
+            <td>{{ employee.department }}</td>
+
+            <td>
+
+    <a href="{{ url_for('view_employee_form', id=employee.id) }}">
+        View Employee
+    </a>
+
+</td>
+
+            <td>
+
+{% if employee.manager_reviewed %}
+
+<button disabled class="reviewed-btn">
+    Already Reviewed
+</button>
+
+{% else %}
+
+<a href="/review-employee/{{ employee.id }}">
+    Review
+</a>
+
+{% endif %}
+
+</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+<a href="{{ url_for('logout') }}"
+   class="logout-btn">
+    Logout
+</a>
+
+</body>
+
+</html>

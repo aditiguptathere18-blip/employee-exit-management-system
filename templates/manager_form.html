@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Manager Feedback Form</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <div class="form-header">
+        <img src="{{ url_for('static', filename='images/prorisk-logo.png') }}"
+class="company-logo">
+
+        <h1>Manager Feedback Form</h1>
+
+        <p>
+            This form is intended to be filled by the Reporting Manager
+            regarding employee resignation and performance assessment.
+        </p>
+
+    </div>
+
+    <div class="form-body">
+
+        <p class="required">* Required</p>
+        <form method="POST" action="/submit-manager">
+
+        <!-- SECTION 1 -->
+
+        <div class="section-card active-section" id="managerSection1">
+
+            <h2>Section 1: Employee Details</h2>
+
+            <label>1. Employee Name *</label>
+            <input type="text" name="employee_name" value="{{ employee.employee_name }}" readonly>
+
+            <label>2. Employee ID *</label>
+            <input type="text" name="employee_id" value="{{ employee.employee_id }}" readonly>
+
+            <label>3. Department *</label>
+
+            <select name="department" value="{{ employee.department }}" readonly>
+                <option value="">Select your answer</option>
+                <option {% if employee.department == 'Top Management' %}selected{% endif %}>Top Management</option>
+                <option {% if employee.department == 'Underwriting & Claims' %}selected{% endif %}>Underwriting & Claims</option>
+                <option {% if employee.department == 'Technology' %}selected{% endif %}>Technology</option>
+                <option {% if employee.department == 'People & Workplace Excellence' %}selected{% endif %}>People & Workplace Excellence</option>
+            </select>
+
+            <label>4. Date of joining *</label>
+            <input type="date" name="joining_date" value="{{ employee.joining_date }}" readonly>
+
+            <label>5. Date of submission of resignation *</label>
+            <input type="date" name="resignation_date" required>
+
+            <div class="button-container">
+
+                <button type="button"
+                onclick="managerNext1()">
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+        <!-- SECTION 2 -->
+
+<div class="section-card hidden-section" id="managerSection2">
+
+    <h2>Section 2: Resignation Understanding</h2>
+
+    <label>6. Primary reason for resignation *</label>
+
+    <select name="primary_reason" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Compensation</option>
+
+        <option>Career Growth</option>
+
+        <option>Higher Studies</option>
+
+        <option>Relocation</option>
+
+        <option>Personal reasons</option>
+
+        <option>Work environment</option>
+
+        <option>Better opportunity</option>
+
+        <option>Others</option>
+
+    </select>
+
+    <label>7. Explain briefly if "others" is selected</label>
+
+    <textarea name="other_reason" placeholder="Enter answer"></textarea>
+
+    <label>8. Was retention attempt made? *</label>
+
+    <div class="yes-no-group">
+
+        <label>
+            <input type="radio" name="retention_attempt" value="Yes" required>
+            Yes
+        </label>
+
+        <label>
+            <input type="radio" name="retention_attempt" value="No">
+            No
+        </label>
+
+    </div>
+
+    <label>9. What was the outcome of the retention attempt?</label>
+
+    <select name="retention_outcome" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Employee Declined</option>
+
+        <option>Compensation Constraint</option>
+
+        <option>Role Constraint</option>
+
+        <option>Under Discussion</option>
+
+        <option>Decision Already Finalized</option>
+
+        <option>Not Applicable</option>
+
+    </select>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="managerBack1()">
+            Back
+        </button>
+
+        <button type="button"
+        onclick="managerNext2()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+<!-- SECTION 3 -->
+
+<div class="section-card hidden-section" id="managerSection3">
+
+    <h2>Section 3: Performance Assessment</h2>
+
+    <label>10. Overall performance during tenure *</label>
+
+    <select name="overall_performance" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Excellent</option>
+
+        <option>Good</option>
+
+        <option>Average</option>
+
+        <option>Needs improvement</option>
+
+    </select>
+
+    <p class="rating-title">
+
+        11. Please rate the employee on the following parameters *
+
+    </p>
+
+    <table class="rating-table">
+
+        <tr>
+
+            <th>Performance Parameters</th>
+
+            <th>Excellent</th>
+
+            <th>Good</th>
+
+            <th>Average</th>
+
+            <th>Poor</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Technical Knowledge</td>
+
+            <td><input type="radio" name="technical_knowledge" value="Excellent" required></td>
+
+            <td><input type="radio" name="technical_knowledge" value="Good"></td>
+
+            <td><input type="radio" name="technical_knowledge" value="Average"></td>
+
+            <td><input type="radio" name="technical_knowledge" value="Poor"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Accuracy of Work</td>
+
+            <td><input type="radio" name="accuracy_work" value="Excellent" required></td>
+
+            <td><input type="radio" name="accuracy_work" value="Good"></td>
+
+            <td><input type="radio" name="accuracy_work" value="Average"></td>
+
+            <td><input type="radio" name="accuracy_work" value="Poor"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Productivity</td>
+
+            <td><input type="radio" name="productivity" value="Excellent" required></td>
+
+            <td><input type="radio" name="productivity" value="Good"></td>
+
+            <td><input type="radio" name="productivity" value="Average"></td>
+
+            <td><input type="radio" name="productivity" value="Poor"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Communication Skills</td>
+
+            <td><input type="radio" name="communication_skills" value="Excellent" required></td>
+
+            <td><input type="radio" name="communication_skills" value="Good"></td>
+
+            <td><input type="radio" name="communication_skills" value="Average"></td>
+
+            <td><input type="radio" name="communication_skills" value="Poor"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Team Collaboration</td>
+
+            <td><input type="radio" name="team_collaboration" value="Excellent" required></td>
+
+            <td><input type="radio" name="team_collaboration" value="Good"></td>
+
+            <td><input type="radio" name="team_collaboration" value="Average"></td>
+
+            <td><input type="radio" name="team_collaboration" value="Poor"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Learning Ability</td>
+
+            <td><input type="radio" name="learning_ability" value="Excellent" required></td>
+
+            <td><input type="radio" name="learning_ability" value="Good"></td>
+ 
+            <td><input type="radio" name="learning_ability" value="Average"></td>
+
+            <td><input type="radio" name="learning_ability" value="Poor"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Ownership & Accountability</td>
+
+            <td><input type="radio" name="ownership" value="Excellent" required></td>
+
+            <td><input type="radio" name="ownership" value="Good"></td>
+
+            <td><input type="radio" name="ownership" value="Average"></td>
+
+            <td><input type="radio" name="ownership" value="Poor"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Client Handling</td>
+
+            <td><input type="radio" name="client_handling" value="Excellent" required></td>
+
+            <td><input type="radio" name="client_handling" value="Good"></td>
+
+            <td><input type="radio" name="client_handling" value="Average"></td>
+
+            <td><input type="radio" name="client_handling" value="Poor"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Adaptability</td>
+
+            <td><input type="radio" name="adaptability" value="Excellent" required></td>
+
+            <td><input type="radio" name="adaptability" value="Good"></td>
+
+            <td><input type="radio" name="adaptability" value="Average"></td>
+
+            <td><input type="radio" name="adaptability" value="Poor"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Process Compliance</td>
+
+            <td><input type="radio" name="process_compliance" value="Excellent" required></td>
+
+            <td><input type="radio" name="process_compliance" value="Good"></td>
+
+            <td><input type="radio" name="process_compliance" value="Average"></td>
+
+            <td><input type="radio" name="process_compliance" value="Poor"></td>
+
+        </tr>
+
+    </table>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="managerBack2()">
+            Back
+        </button>
+
+        <button type="button"
+        onclick="managerNext3()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+<!-- SECTION 4 -->
+
+<div class="section-card hidden-section" id="managerSection4">
+
+    <h2>Section 4: Strengths & Improvement Areas</h2>
+
+    <label>12. Key strengths *</label>
+
+    <div class="checkbox-group">
+
+        <label><input type="checkbox" name="strengths" value="Technical Knowledge"> Technical Knowledge</label>
+
+        <label><input type="checkbox" name="strengths" value="Fast Learner"> Fast Learner</label>
+
+        <label><input type="checkbox" name="strengths" value="Team Player"> Team Player</label>
+
+        <label><input type="checkbox" name="strengths" value="Communication"> Communication</label>
+
+        <label><input type="checkbox" name="strengths" value="Ownership"> Ownership</label>
+
+        <label><input type="checkbox" name="strengths" value="Client Management"> Client Management</label>
+
+        <label><input type="checkbox" name="strengths" value="Positive Attitude"> Positive Attitude</label>
+
+        <label><input type="checkbox" name="strengths" value="Discipline"> Discipline</label>
+
+        <label><input type="checkbox" name="strengths" value="Problem Solving"> Problem Solving</label>
+
+        <label><input type="checkbox" name="strengths" value="Process Understanding"> Process Understanding</label>
+
+        <label><input type="checkbox" name="strengths" value="Others"> Others</label>
+
+    </div>
+
+    <label>13. Any other strength observed during the tenure *</label>
+
+    <textarea placeholder="Enter answer" name="other_strength"></textarea>
+
+    <label>14. Areas of improvement *</label>
+
+    <div class="checkbox-group">
+
+        <label><input type="checkbox" name="improvements" value="Communication"> Communication</label>
+
+        <label><input type="checkbox" name="improvements" value="Accuracy"> Accuracy</label>
+
+        <label><input type="checkbox" name="improvements" value="Time management"> Time management</label>
+
+        <label><input type="checkbox" name="improvements" value="Attendance"> Attendance</label>
+
+        <label><input type="checkbox" name="improvements" value="Process adherence"> Process adherence</label>
+
+        <label><input type="checkbox" name="improvements" value="Productivity"> Productivity</label>
+
+        <label><input type="checkbox" name="improvements" value="Technical skills"> Technical skills</label>
+
+        <label><input type="checkbox" name="improvements" value="Collaboration"> Collaboration</label>
+
+        <label><input type="checkbox" name="improvements" value="Behaviour"> Behaviour</label>
+
+        <label><input type="checkbox" name="improvements" value="Other"> Other</label>
+
+    </div>
+
+    <label>15. Any other area of improvement identified during the tenure *</label>
+
+    <textarea placeholder="Enter answer" name="other_improvement"></textarea>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="managerBack3()">
+            Back
+        </button>
+
+        <button type="button"
+        onclick="managerNext4()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+<!-- SECTION 5 -->
+
+<div class="section-card hidden-section" id="managerSection5">
+
+    <h2>Section 5: Professional Conduct Assessment</h2>
+
+    <label>16. Behaviour & Professionalism *</label>
+
+    <table class="rating-table">
+
+        <tr>
+
+            <th>Assessment Area</th>
+
+            <th>Excellent</th>
+
+            <th>Good</th>
+
+            <th>Average</th>
+
+            <th>Poor</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Behaviour & Professionalism</td>
+
+            <td><input type="radio" name="behaviour" value="Excellent" required></td>
+
+            <td><input type="radio" name="behaviour" value="Good"></td>
+
+            <td><input type="radio" name="behaviour" value="Average"></td>
+
+            <td><input type="radio" name="behaviour" value="Poor"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Attendance & Punctuality</td>
+
+            <td><input type="radio" name="attendance" value="Excellent" required></td>
+
+            <td><input type="radio" name="attendance" value="Good"></td>
+
+            <td><input type="radio" name="attendance" value="Average"></td>
+
+            <td><input type="radio" name="attendance" value="Poor"></td>
+
+        </tr>
+
+    </table>
+
+    <label>17. Insurance / Underwriting / Claim knowledge *</label>
+
+    <div class="option-group">
+
+        <label>
+            Strong
+            <input type="radio" name="insurance_knowledge" value="Strong" required>
+        </label>
+
+        <label>
+            Moderate
+            <input type="radio" name="insurance_knowledge" value="Moderate">
+        </label>
+
+        <label>
+            Basic
+            <input type="radio" name="insurance_knowledge" value="Basic">
+        </label>
+
+        <label>
+            Limited
+            <input type="radio" name="insurance_knowledge" value="Limited">
+        </label>
+
+    </div>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="managerBack4()">
+            Back
+        </button>
+
+        <button type="button"
+        onclick="managerNext5()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+<!-- SECTION 6 -->
+
+<div class="section-card hidden-section" id="managerSection6">
+
+    <h2>Section 6: Operational Handover</h2>
+
+    <label>18. Handover status completed *</label>
+
+    <select name="handover_status" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Yes</option>
+
+        <option>No</option>
+
+        <option>Partially</option>
+
+    </select>
+
+    <label>19. Knowledge transfer adequate? *</label>
+
+    <select name="knowledge_transfer" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Yes</option>
+
+        <option>No</option>
+
+        <option>Partially</option>
+
+    </select>
+
+    <label>20. Pending critical task? *</label>
+
+    <select name="pending_task" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Yes</option>
+
+        <option>No</option>
+
+    </select>
+
+    <label>21. Replacement requirement urgency *</label>
+
+    <select name="replacement_urgency" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Immediate</option>
+
+        <option>Within 15 days</option>
+
+        <option>Within 30 days</option>
+
+        <option>Can be managed temporarily</option>
+
+    </select>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="managerBack5()">
+            Back
+        </button>
+
+        <button type="button"
+        onclick="managerNext6()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+<!-- SECTION 7 -->
+
+<div class="section-card hidden-section" id="managerSection7">
+
+    <h2>Section 7: Retention & Improvement Readiness</h2>
+
+    <p class="rating-title">
+        22. Retention & Improvement Readiness *
+    </p>
+
+    <!-- Question 1 -->
+
+    <div class="closing-question">
+
+        <p>Employee has expressed interest in continuing with the organization</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="continue_org"  value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="continue_org" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Question 2 -->
+
+    <div class="closing-question">
+
+        <p>Employee is willing to improve performance and communication</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="improve_performance" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="improve_performance" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Question 3 -->
+
+    <div class="closing-question">
+
+        <p>Employee acknowledges areas of self-improvement</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="self_improvement" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="self_improvement" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Question 4 -->
+
+    <div class="closing-question">
+
+        <p>Employee was receptive to feedback/discussion</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="feedback_discussion" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="feedback_discussion" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Question 5 -->
+
+    <div class="closing-question">
+
+        <p>Retention discussion appears feasible</p>
+
+        <div class="yes-no-group">
+
+            <label>
+                <input type="radio" name="retention_feasible" value="Yes" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="retention_feasible" value="No">
+                No
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="managerBack6()">
+            Back
+        </button>
+
+        <button type="button"
+        onclick="managerNext7()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+<!-- SECTION 8 -->
+
+<div class="section-card hidden-section" id="managerSection8">
+
+    <h2>Section 8: Rehire Recommendation</h2>
+
+    <label>23. Would rehire this employee in future? *</label>
+
+    <select name="rehire" required>
+
+        <option value="">Select your answer</option>
+
+        <option>Yes</option>
+
+        <option>No</option>
+
+        <option>Maybe</option>
+
+    </select>
+
+    <label>24. Suitable for future roles in *</label>
+
+    <div class="checkbox-group">
+
+        <label><input type="checkbox" name="future_roles" value="Underwriting"> Underwriting</label>
+
+        <label><input type="checkbox" name="future_roles" value="Claims"> Claims</label>
+
+        <label><input type="checkbox" name="future_roles" value="Audit"> Audit</label>
+
+        <label><input type="checkbox" name="future_roles" value="Training"> Training</label>
+
+        <label><input type="checkbox"name="future_roles" value="Client Management"> Client Management</label>
+
+        <label><input type="checkbox" name="future_roles" value="Technology"> Technology</label>
+
+        <label><input type="checkbox"name="future_roles" value="Leadership role"> Leadership role</label>
+
+        <label><input type="checkbox" name="future_roles" value="Others"> Others (HR, Marketing, Accounts)</label>
+
+        <label><input type="checkbox" name="future_roles" value="Not recommended"> Not recommended</label>
+
+    </div>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="managerBack7()">
+            Back
+        </button>
+
+        <button type="button"
+        onclick="managerNext8()">
+            Next
+        </button>
+
+    </div>
+
+</div>
+<!-- SECTION 9 -->
+
+<div class="section-card hidden-section" id="managerSection9">
+
+    <h2>Section 9: Overall Remarks</h2>
+
+    <label>25. Overall comments / concerns / remarks *</label>
+
+    <textarea  name="overall_remarks"placeholder="Enter answer"  required ></textarea>
+
+    <div class="button-container">
+
+        <button type="button"
+        class="secondary-btn"
+        onclick="managerBack8()">
+            Back
+        </button>
+
+        <button type="submit">
+            Submit
+        </button>
+
+    </div>
+
+</div>
+</form>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/manager.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/form-validation.js') }}"></script>
+
+</body>
+
+</html>

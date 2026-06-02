@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submission Successful</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <h1>Form Submitted Successfully</h1>
+
+    <h2>Thank you for your feedback.</h2>
+
+    {% if dashboard_url %}
+
+    <a href="{{ dashboard_url }}">
+        <button>Back to Dashboard</button>
+    </a>
+
+    {% else %}
+
+    <a href="/">
+        <button>Go to Login</button>
+    </a>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Final Reports</title>
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+<h1>Completed Exit Reviews</h1>
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>ID</th>
+        <th>Employee Name</th>
+        <th>Department</th>
+        <th>Final Status</th>
+        <th>Remarks</th>
+    </tr>
+
+    {% for report in reports %}
+
+    <tr>
+
+        <td>{{ report.id }}</td>
+
+        <td>{{ report.employee_name }}</td>
+
+        <td>{{ report.department }}</td>
+
+        <td>{{ report.final_status }}</td>
+
+        <td>{{ report.top_management_remarks }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<a href="{{ url_for('top_management_dashboard') }}"
+   class="logout-btn">
+    Back to Dashboard
+</a>
+
+<br><br>
+
+<a href="{{ url_for('logout') }}"
+   class="logout-btn">
+    Logout
+</a>
+
+</body>
+</html>
