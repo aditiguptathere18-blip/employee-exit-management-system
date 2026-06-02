@@ -16,6 +16,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+with app.app_context():
+    db.create_all()
 
 class EmployeeForm(db.Model):
 
