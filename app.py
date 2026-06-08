@@ -815,6 +815,18 @@ def create_users():
 
     return "Users Created Successfully"    
 
+@app.route('/check-users')
+def check_users():
+
+    users = User.query.all()
+
+    result = ""
+
+    for u in users:
+        result += f"{u.email} | {u.password} | {u.role}<br>"
+
+    return result
+
 if __name__ == '__main__':
 
     app.run(debug=True) 
