@@ -615,7 +615,6 @@ def submit_pwe():
         contact_number=request.form.get('contact_number'),
         personal_email=request.form.get('personal_email'),
         communication_address=request.form.get('communication_address'),
-
         exit_discussion_date=request.form.get('exit_discussion_date'),
         separation_reason=request.form.get('separation_reason'),
         other_reason=request.form.get('other_reason'),
@@ -796,6 +795,26 @@ def logout():
 with app.app_context():
     db.create_all()
 
+@app.route('/create-users')
+def create_users():
+
+    users = [
+        User(email='employee@gmail.com', password='1234', role='employee'),
+        User(email='manager@gmail.com', password='1234', role='manager'),
+        User(email='pwe@gmail.com', password='1234', role='pwe'),
+        User(email='top@company.com', password='1234', role='top_management')
+    ]
+
+    for user in users:
+        existing = User.query.filter_by(email=user.email).first()
+
+        if not existing:
+            db.session.add(user)
+
+    db.session.commit()
+
+    return "Users Created Successfully"    
+
 if __name__ == '__main__':
 
-    app.run(debug=True)
+    app.run(debug=True) 
