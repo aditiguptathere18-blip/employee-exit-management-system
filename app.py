@@ -795,37 +795,6 @@ def logout():
 with app.app_context():
     db.create_all()
 
-@app.route('/create-users')
-def create_users():
-
-    users = [
-        User(email='employee@gmail.com', password='1234', role='employee'),
-        User(email='manager@gmail.com', password='1234', role='manager'),
-        User(email='pwe@gmail.com', password='1234', role='pwe'),
-        User(email='top@company.com', password='1234', role='top_management')
-    ]
-
-    for user in users:
-        existing = User.query.filter_by(email=user.email).first()
-
-        if not existing:
-            db.session.add(user)
-
-    db.session.commit()
-
-    return "Users Created Successfully"    
-
-@app.route('/check-users')
-def check_users():
-
-    users = User.query.all()
-
-    result = ""
-
-    for u in users:
-        result += f"{u.email} | {u.password} | {u.role}<br>"
-
-    return result
 
 if __name__ == '__main__':
 
