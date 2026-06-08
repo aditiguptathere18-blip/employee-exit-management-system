@@ -1,0 +1,64 @@
+/* Top Management Final Review Form */
+
+form{
+    max-width:700px;
+    margin:0 auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+form label{
+    display:block;
+    font-weight:600;
+    color:#1e293b;
+    margin-bottom:6px;
+}
+
+form input,
+form select,
+form textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:14px;
+    box-sizing:border-box;
+}
+
+form input[readonly]{
+    background:#f8fafc;
+}
+
+form textarea{
+    resize:vertical;
+}
+
+form button{
+    width:100%;
+    padding:14px;
+    background:#3b82c4;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+form button:hover{
+    background:#2563eb;
+}
+
+.logout-btn{
+    display:block;
+    width:150px;
+    text-align:center;
+    margin:20px auto;
+}
+h1 {
+    text-align: center;
+    color: #1e293b; /* optional */
+    margin-bottom: 20px; /* optional spacing */
+}

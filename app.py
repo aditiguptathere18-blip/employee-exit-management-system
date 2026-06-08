@@ -798,36 +798,4 @@ with app.app_context():
 
 if __name__ == '__main__':
 
-    with app.app_context():
-        db.create_all()
-      
-
-    if not User.query.filter_by(email="employee@gmail.com").first():
-
-        db.session.add(User(
-            email="employee@gmail.com",
-            password="1234",
-            role="employee"
-        ))
-
-        db.session.add(User(
-            email="manager@gmail.com",
-            password="1234",
-            role="manager"
-        ))
-
-        db.session.add(User(
-            email="pwe@gmail.com",
-            password="1234",
-            role="pwe"
-        ))
-
-        db.session.add(User(
-            email="top@gmail.com",
-            password="1234",
-            role="top_management"
-        ))
-
-        db.session.commit()
-
     app.run(debug=True)
